@@ -32,16 +32,16 @@ class FareCalculatorView(View):
             df = pd.read_csv('faredata.csv')
             wanted_data = df.loc[(df["Time"] == time) & (df["Shift"] == noon)]
             print(wanted_data)
-            print(wanted_data['Initial Fare'][0])
-            pure_price = wanted_data['Initial Fare'][0] + distance * wanted_data['Km Rate'][0]
+            print(wanted_data['Initial Fare'])
+            pure_price = wanted_data['Initial Fare']+ distance * wanted_data['Km Rate']
 
-            price_service = pure_price + pure_price * wanted_data['service charge(%)'][0]/100
+            price_service = pure_price + pure_price * wanted_data['service charge(%)']/100
 
-            final_price = price_service + price_service * wanted_data['Surge Charge(%)'][0]/100
+            final_price = price_service + price_service * wanted_data['Surge Charge(%)']/100
 
             print(pure_price, price_service, final_price)
 
-            context['price'] = round(final_price,2)
+            context['price'] = float(round(final_price,2))
 
         return render(request, self.template_name,context=context)
         
