@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+{% if price %} 
+
+<h1> Your Price is {{price}}. </h1>
+
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit </button>
+</form>
+
+{% endblock content %}
